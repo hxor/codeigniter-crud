@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<?php endforeach ?>
-			<p>Total: <?= $total_content ?></p>
+			<p>Total: <?= $totalRows ?></p>
 
 			<div id="pagination">
 				<?= $pagination ?>
