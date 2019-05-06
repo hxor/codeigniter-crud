@@ -24,6 +24,29 @@ class Post extends MY_Controller {
 		$this->load->view('app', compact('main_view', 'heading', 'content', 'totalRows', 'pagination'));
 	}
 
+	public function search($page = null)
+	{
+		$heading	= 'List of Posts';
+		
+		if (isset($_POST['keywords'])) {
+			$this->session->set_userdata('keywords', $this->input->post('keywords'));
+		}
+		
+		$keywords 	= $this->session->userdata('keywords');	
+		$content	= $this->post->where('title', $keywords)
+						->orLike('body', $keywords)
+						->paginate($page)
+						->getAll();
+		$total		= $this->post->where('title', $keywords)
+						->orLike('body', $keywords)
+						->getAll();
+		$totalRows	= count($total);
+		$pagination	= $this->post->makePagination(site_url('post/search'), 3, $totalRows);
+
+		$main_view = 'pages/post/index';
+		$this->load->view('app', compact('main_view', 'heading', 'content', 'totalRows', 'pagination'));
+	}
+
 	public function create()
 	{
 		if (!$_POST) {
