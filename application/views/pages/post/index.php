@@ -14,6 +14,11 @@
 				</div>
 			</div>
 			<?php endforeach ?>
+			<p>Total: <?= $total_content ?></p>
+
+			<div id="pagination">
+				<?= $pagination ?>
+			</div>
 		</div>
 	</div>
 </div><!-- /.container -->
