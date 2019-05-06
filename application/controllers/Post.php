@@ -55,6 +55,16 @@ class Post extends CI_Controller {
 		$this->load->view('app', compact('main_view', 'heading', 'content', 'total_content', 'pagination'));
 	}
 
+	public function create()
+	{
+		if (!$_POST) {
+			$heading = 'Create Post';
+			$form_action = base_url('/post/create');
+			$main_view = 'pages/post/form';
+			$this->load->view('app', compact('main_view', 'heading', 'form_action'));
+		}
+	}
+
 	public function show($id)
 	{
 		$heading = 'Detail Post';

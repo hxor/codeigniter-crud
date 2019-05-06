@@ -1,7 +1,11 @@
 <div role="main" class="container">
 	<div class="row">
 		<div class="col-lg-12">
-			<h3><?= $heading ?></h3>
+			<h3>
+				<?= $heading ?> 
+				<a href="<?= base_url('/post/create') ?>" class="btn btn-sm btn-primary">Create</a>
+			</h3>
+			
 			<hr>
 			<?php foreach($content as $row) : ?>
 			<div class="card" style="width: 40rem;">
