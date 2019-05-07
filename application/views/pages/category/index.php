@@ -4,6 +4,17 @@
 			<h3>
 				Category
 				<a href="<?= base_url('category/create') ?>" class="btn btn-sm btn-primary">Create</a>
+				<div class="float-right">
+					<?= form_open('category/search', ['method' => 'POST']) ?>
+					<div class="input-group mb-3">
+						<?= form_input('keywords', $this->session->userdata('keywords'), ['placeholder' => 'Search', 'class' => 'form-control']) ?>
+						<div class="input-group-append">
+							<?= form_button(['type' => 'submit', 'content' => 'Search', 'class' => 'btn btn-outline-secondary']) ?>
+							<a href="<?= base_url('/category/reset') ?>" class="btn btn-outline-secondary">Reset</a>
+						</div>
+					</div>
+					<?= form_close() ?>
+				</div>
 			</h3>
 			<?php $this->load->view('layouts/_flash'); ?>
 			<table class="table table-sm">

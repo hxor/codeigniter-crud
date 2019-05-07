@@ -20,6 +20,29 @@ class Category extends MY_Controller {
 		$this->load->view('app', compact('main_view', 'content', 'totalRows', 'pagination'));
 	}
 
+	public function search($page = null)
+	{		
+		if (isset($_POST['keywords'])) {
+			$this->session->set_userdata('keywords', $this->input->post('keywords'));
+		}
+		
+		$keywords 	= $this->session->userdata('keywords');	
+		$content	= $this->category->like('title', $keywords)
+						->paginate($page)
+						->get();
+		$totalRows	= $this->category->like('title', $keywords)->count();
+		$pagination	= $this->category->makePagination(site_url('category/search'), 3, $totalRows);
+
+		$main_view = 'pages/category/index';
+		$this->load->view('app', compact('main_view', 'content', 'totalRows', 'pagination'));
+	}
+
+	public function reset()
+	{
+		$this->session->unset_userdata('keywords');
+		redirect('category');
+	}
+
 	public function create()
 	{
 		if (!$_POST) {
