@@ -63,7 +63,7 @@ class MY_Model extends CI_Model {
 	 * Hasil akhir single object
 	 * @return void
 	 */
-	public function get()
+	public function first()
 	{
 		return $this->db->get($this->table)->row();
 	}
@@ -73,7 +73,7 @@ class MY_Model extends CI_Model {
 	 * Hasil akhir multi object
 	 * @return void
 	 */
-	public function getAll()
+	public function get()
 	{
 		return $this->db->get($this->table)->result();
 	}
