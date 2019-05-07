@@ -11,7 +11,10 @@
 			<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link" href="<?= base_url('post') ?>">Post</a>
+				<a class="nav-link" href="<?= base_url('category') ?>">Category</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="<?= base_url('post') ?>">Post</a>
 			</li>
 		</ul>
 		</div>

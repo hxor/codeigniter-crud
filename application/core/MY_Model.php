@@ -80,6 +80,17 @@ class MY_Model extends CI_Model {
 
 	/**
 	 * Chain Method
+	 * Jumlah data dari hasil query
+	 *
+	 * @return void
+	 */
+	public function count()
+	{
+		return $this->db->count_all_results($this->table);
+	}
+
+	/**
+	 * Chain Method
 	 * Pencarian Menggunakan WHERE
 	 *
 	 * @param String $column

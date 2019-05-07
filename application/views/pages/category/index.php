@@ -3,8 +3,9 @@
 		<div class="col-lg-12">
 			<h3>
 				Category
-				<a href="#" class="btn btn-sm btn-primary">Create</a>
+				<a href="<?= base_url('category/create') ?>" class="btn btn-sm btn-primary">Create</a>
 			</h3>
+			<?php $this->load->view('layouts/_flash'); ?>
 			<table class="table table-sm">
 				<thead>
 					<tr>
