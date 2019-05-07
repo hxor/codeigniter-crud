@@ -29,8 +29,10 @@
 					<?= form_close() ?>
 				</div>
 			</h3>
-			
 			<hr>
+			
+			<?php $this->load->view('layouts/_flash'); ?>
+
 			<?php foreach($content as $row) : ?>
 			<div class="card" style="width: 40rem;">
 				<div class="card-body">

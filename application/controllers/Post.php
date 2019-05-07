@@ -15,8 +15,8 @@ class Post extends MY_Controller {
 	{
 		$heading	= 'List of Posts';
 
-		$content	= $this->post->paginate($page)->getAll();
-		$total		= $this->post->getAll();
+		$content	= $this->post->orderBy('id', 'desc')->paginate($page)->getAll();
+		$total		= $this->post->orderBy('id', 'desc')->getAll();
 		$totalRows	= count($total);
 		$pagination	= $this->post->makePagination(site_url('post'), 2, $totalRows);
 		$main_view = 'pages/post/index';
@@ -50,11 +50,27 @@ class Post extends MY_Controller {
 	public function create()
 	{
 		if (!$_POST) {
-			$heading = 'Create Post';
-			$form_action = base_url('/post/create');
-			$main_view = 'pages/post/form';
-			$this->load->view('app', compact('main_view', 'heading', 'form_action'));
+			$input = (object) $this->post->getDefaultValues();
+		} else {
+			$input = (object) $this->input->post(null, true);
 		}
+
+		if (!$this->post->validate()) {
+			$heading 		= 'Create New';
+			$main_view		= 'pages/post/form';
+			$form_action	= 'post/create';
+
+			$this->load->view('app', compact('main_view', 'heading', 'form_action', 'input'));
+			return;
+		}
+
+		if ($this->post->insert($input)) {
+			$this->session->set_flashdata('success', 'Data has been saved.');
+		} else {
+			$this->session->set_flashdata('error', 'Oops! Something error!.');
+		}
+
+		redirect('post');
 	}
 
 	public function show($id)
