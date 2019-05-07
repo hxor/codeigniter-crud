@@ -94,6 +94,20 @@ class MY_Model extends CI_Model {
 
 	/**
 	 * Chain Method
+	 * Pencarian data menggunakan like
+	 *
+	 * @param [type] $column
+	 * @param [type] $condition
+	 * @return void
+	 */
+	public function like($column, $condition)
+	{
+		$this->db->like($column, $condition);
+		return $this;
+	}
+
+	/**
+	 * Chain Method
 	 * Pencarian Menggunakan OR LIKE
 	 *
 	 * @param string $column

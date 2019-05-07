@@ -33,11 +33,11 @@ class Post extends MY_Controller {
 		}
 		
 		$keywords 	= $this->session->userdata('keywords');	
-		$content	= $this->post->where('title', $keywords)
+		$content	= $this->post->like('title', $keywords)
 						->orLike('body', $keywords)
 						->paginate($page)
 						->get();
-		$total		= $this->post->where('title', $keywords)
+		$total		= $this->post->like('title', $keywords)
 						->orLike('body', $keywords)
 						->get();
 		$totalRows	= count($total);
