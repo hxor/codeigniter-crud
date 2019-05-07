@@ -20,8 +20,11 @@
 						<th scope="row"><?= $no ?></th>
 						<td><?= $row->title ?></td>
 						<td>
-							<a href="<?= base_url("/category/edit/{$row->id}") ?>" class="btn btn-sm btn-secondary">Edit</a>
-							<button class="btn btn-sm btn-danger">Delete</button>
+							<?= form_open("category/delete/{$row->id}", ['method' => 'POST']) ?>
+								<?= form_hidden('id', $row->id) ?>
+								<a href="<?= base_url("/category/edit/{$row->id}") ?>" class="btn btn-sm btn-secondary">Edit</a>
+								<button type="submit" class="btn btn-sm btn-danger">Delete</button>
+							<?= form_close() ?>
 						</td>
 					</tr>
 					<?php endforeach ?>

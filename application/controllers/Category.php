@@ -76,6 +76,27 @@ class Category extends MY_Controller {
 		redirect('category');
 	}
 
+	public function delete($id = null)
+	{
+		if (!$_POST) {
+			redirect('category');
+		}
+		
+		$content = $this->category->where('id', $id)->first();
+		if (!$content) {
+			$this->session->set_flashdata('warning', 'Data Not Found.');
+			redirect('category');
+		}
+
+		if ($this->category->where('id', $id)->delete()) {
+			$this->session->set_flashdata('success', 'Data has been deleted.');
+		} else {
+			$this->session->set_flashdata('error', 'Oops! Something error!.');
+		}
+
+		redirect('category');
+	}
+
 	public function unique_title()
 	{
 		$title			= $this->input->post('title');
