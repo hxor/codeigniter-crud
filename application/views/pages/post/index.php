@@ -39,9 +39,12 @@
 					<h5 class="card-title">(<?= ++$i ?>) <?= $row->title ?></h5>
 					<h6 class="card-subtitle mb-2 text-muted"><?= $row->date ?></h6>
 					<p class="card-text"><?= $row->body ?></p>
-					<a href="<?= base_url('/post/show/' . $row->id) ?>" class="card-link">Show</a>
-					<a href="<?= base_url('/post/edit/' . $row->id) ?>" class="card-link">Edit</a>
-					<a href="#" class="card-link text-danger">Delete</a>
+					<?= form_open("post/delete/{$row->id}", ['method' => 'POST']) ?>
+						<?= form_hidden('id', $row->id) ?>
+						<a href="<?= base_url('/post/show/' . $row->id) ?>" class="btn btn-sm btn-primary">Show</a>
+						<a href="<?= base_url('/post/edit/' . $row->id) ?>" class="btn btn-sm btn-secondary">Edit</a>
+						<?= form_button(['content' => 'Delete', 'type' => 'submit', 'class' => 'btn btn-sm btn-danger']) ?>
+					<?= form_close() ?>
 				</div>
 			</div>
 			<?php endforeach ?>

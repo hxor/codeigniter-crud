@@ -114,6 +114,27 @@ class Post extends MY_Controller {
 		redirect('post');
 	}
 
+	public function delete($id = null)
+	{
+		if (!$_POST) {
+			redirect('post');
+		}
+		
+		$content = $this->post->where('id', $id)->first();
+		if (!$content) {
+			$this->session->set_flashdata('warning', 'Data Not Found.');
+			redirect('post');
+		}
+
+		if ($this->post->where('id', $id)->delete()) {
+			$this->session->set_flashdata('success', 'Data has been deleted.');
+		} else {
+			$this->session->set_flashdata('error', 'Oops! Something error!.');
+		}
+
+		redirect('post');
+	}
+
 }
 
 /* End of file Post.php */
