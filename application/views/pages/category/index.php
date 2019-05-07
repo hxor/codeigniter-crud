@@ -20,7 +20,7 @@
 						<th scope="row"><?= $no ?></th>
 						<td><?= $row->title ?></td>
 						<td>
-							<a href="#" class="btn btn-sm btn-secondary">Edit</a>
+							<a href="<?= base_url("/category/edit/{$row->id}") ?>" class="btn btn-sm btn-secondary">Edit</a>
 							<button class="btn btn-sm btn-danger">Delete</button>
 						</td>
 					</tr>

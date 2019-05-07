@@ -45,16 +45,48 @@ class Category extends MY_Controller {
 		redirect('category');
 	}
 
+	public function edit($id = null)
+	{
+		$content = $this->category->where('id', $id)->first();
+		if (!$content) {
+			$this->session->set_flashdata('warning', 'Data Not Found.');
+			redirect('post');
+		}
+
+		if (!$_POST) {
+			$input = (object) $content;
+		} else {
+			$input = (object) $this->input->post(null, true);
+		}
+
+		if (!$this->category->validate()) {
+			$main_view		= 'pages/category/form';
+			$form_action	= "category/edit/{$id}";
+
+			$this->load->view('app', compact('main_view', 'form_action', 'input'));
+			return;
+		}
+
+		if ($this->category->where('id', $id)->update($input)) {
+			$this->session->set_flashdata('success', 'Data has been updated.');
+		} else {
+			$this->session->set_flashdata('error', 'Oops! Something error!.');
+		}
+
+		redirect('category');
+	}
+
 	public function unique_title()
 	{
 		$title			= $this->input->post('title');
 		$id_category	= $this->input->post('id');
 
-		$this->category->where('title', $title);
-		!$id_category || $this->category->where('id', $id_category);
-		$category = $this->category->get();
+		$category = $this->category->where('title', $title)->first();
 
-		if (count($category)) {
+		if ($category) {
+			if ($id_category == $category->id) {
+				return true;
+			}
 			$this->form_validation->set_message('unique_title', '%s already exists!');
 			return false;
 		}
