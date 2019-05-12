@@ -33,14 +33,11 @@ class Login_model extends MY_Model {
 
 	public function runLogin($input)
 	{
-		$input->password = md5($input->password);
-		$user = $this->db->where('username', $input->username)
-						 ->where('password', $input->password)
-						//  ->limit(1)
+		$user = $this->db->where('username', strtolower($input->username))
 						 ->get($this->table)
 						 ->row();
 
-		if (count($user)) {
+		if (!empty($user) && $this->hashVerify($input->password, $user->password)) {
 			$data = [
 				'name'		=> $user->name,
 				'username'	=> $user->username,
