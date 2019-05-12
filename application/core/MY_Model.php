@@ -156,7 +156,7 @@ class MY_Model extends CI_Model {
 	public function join($table, $type = 'left')
 	{
 		$this->db->join($table, 
-			"$this->table.id = $table.id_$table", $type
+			"$this->table.id_$table = $table.id", $type
 		);
 		return $this;
 	}
