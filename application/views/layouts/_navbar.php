@@ -6,17 +6,28 @@
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarsExample07">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-			<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="<?= base_url('category') ?>">Category</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="<?= base_url('post') ?>">Post</a>
-			</li>
-		</ul>
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('category') ?>">Category</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('post') ?>">Post</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('login') ?>">Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('register') ?>">Register</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('logout') ?>">Logout</a>
+				</li>
+			</ul>
 		</div>
 	</div>
 </nav>

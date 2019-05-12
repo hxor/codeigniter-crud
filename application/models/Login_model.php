@@ -25,7 +25,7 @@ class Login_model extends MY_Model {
 			[
 				'field'	=> 'password',
 				'label' => 'Password',
-				'rules'	=> 'trim|required'
+				'rules'	=> 'required'
 			]
 		];
 		return $validationRules;
@@ -42,6 +42,7 @@ class Login_model extends MY_Model {
 
 		if (count($user)) {
 			$data = [
+				'name'		=> $user->name,
 				'username'	=> $user->username,
 				'level'		=> $user->level,
 				'is_login'	=> true,

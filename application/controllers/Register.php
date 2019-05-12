@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends MY_Controller {
+class Register extends MY_Controller {
 
 	public function __construct()
 	{
@@ -19,25 +19,25 @@ class Login extends MY_Controller {
 	public function index()
 	{
 		if (!$_POST) {
-			$input	= (object) $this->login->getDefaultValues();
+			$input	= (object) $this->register->getDefaultValues();
 		} else {
-			$input = (object) $this->input->post(null, true);
+			$input	= (object) $this->input->post(null, true);
 		}
 
-		if (!$this->login->validate()) {
-			$main_view = 'auth/login';
+		if (!$this->register->validate()) {
+			$main_view = 'auth/register';
 			$this->load->view('app', compact('main_view', 'input'));
 			return;
 		}
 
-		if ($this->login->runLogin($input)) {
+		if ($this->register->runRegister($input)) {
 			redirect('admin');
 		} else {
-			$this->session->set_flashdata('error', 'Username atau password salah atau akun anda sedang diblokir');
-			redirect('login');
+			$this->session->set_flashdata('error', 'Oops! Something error!.');
+			redirect('register');
 		}
 	}
 
 }
 
-/* End of file Login.php */
+/* End of file Register.php */
