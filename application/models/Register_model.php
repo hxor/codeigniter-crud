@@ -51,19 +51,20 @@ class Register_model extends MY_Model {
 	{
 		$data = [
 			'name' 		=> $input->name,
-			'username'	=> $input->username,
-			'password'	=> md5($input->password),
+			'username'	=> strtolower($input->username),
+			'password'	=> $this->hash($input->password),
 			'level'		=> 'member'
 		];
+		
 		$user				= $this->insert($data);
-			$sess_data = [
-				'name'		=> $data['name'],
-				'username'	=> $data['username'],
-				'level'		=> $data['level'],
-				'is_login'	=> true,
-			];
-			$this->session->set_userdata($sess_data);
-			return true;
+		$sess_data = [
+			'name'		=> $data['name'],
+			'username'	=> $data['username'],
+			'level'		=> $data['level'],
+			'is_login'	=> true,
+		];
+		$this->session->set_userdata($sess_data);
+		return true;
 	}
 
 }
